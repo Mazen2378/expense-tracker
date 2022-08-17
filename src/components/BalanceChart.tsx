@@ -62,8 +62,13 @@ const BalanceChart:React.FC = () => {
                             display:false,
                         }
                     }
-
+                },
+                plugins: {
+                    tooltip: {
+                        displayColors: false
+                    }
                 }
+
             }}/>
             <button onClick={()=>{setState(state+1)}}>click me</button>
         </>
