@@ -15,27 +15,28 @@ const BalanceChart:React.FC = () => {
                 borderWidth: 2,
                 label: 'outcome',
                 data: labels.map(label => Math.floor(Math.random() *15) ),
-                tension: 0.3,
+                tension: 0.4,
                 borderColor: 'rgba(225, 16, 65,1)',
                 backgroundColor:'rgba(225, 16, 65,1)',
-                pointRadius: 10,
+                pointRadius: 0,
                 pointBorderColor: 'rgba(0,0,0,0)',
-                pointBackgroundColor: 'rgba(0,0,0,0)',
+                pointBackgroundColor: 'rgba(225, 16, 65,1)',
                 pointHoverBackgroundColor: 'rgb(0,0,0)',
                 pointHoverRadius: 4,
                 pointHoverBorderColor: 'rgb(225,16,65)',
                 pointHoverBorderWidth: 2,
             },
             {
+                borderWidth: 2,
                 label: 'income',
                 data: labels.map(label => Math.floor(Math.random() *10) ),
-                tension: 0.3,
+                tension: 0.4,
                 pointStyle:'circle',
                 borderColor: 'rgba(225, 77, 65,1)',
                 backgroundColor: 'rgba(225, 77, 65,1)',
-                pointRadius: 5,
+                pointRadius: 0,
                 pointBorderColor: 'rgba(0,0,0,0)',
-                pointBackgroundColor: 'rgba(0,0,0,0)',
+                pointBackgroundColor: 'rgba(225, 77, 65,1)',
                 pointHoverBackgroundColor: 'rgb(0,0,0)',
                 pointHoverRadius: 4,
                 pointHoverBorderColor: 'rgb(225,77,65)',
@@ -47,8 +48,10 @@ const BalanceChart:React.FC = () => {
         <>
             <Line data={data} options={{
                 interaction: {
-                 mode: 'index'
+                    mode: 'index',
+                    intersect: false
                 },
+                events: ['click'],
                 scales: {
                     x: {
                         grid:{
@@ -63,13 +66,9 @@ const BalanceChart:React.FC = () => {
                         }
                     }
                 },
-                plugins: {
-                    tooltip: {
-                        displayColors: false
-                    }
                 }
 
-            }}/>
+            }/>
             <button onClick={()=>{setState(state+1)}}>click me</button>
         </>
     )
