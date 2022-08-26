@@ -1,11 +1,11 @@
 import { createContext } from 'react'
-import { Transaction } from '../types';
+import { Transactions } from '../types';
 interface balanceContextType {
-    transactions:Transaction[];
-    setTransactions: (transactions:Transaction[]) => void;
+    transactions:Transactions;
+    setTransactions: (transactions:Transactions) => void;
 }
 const initalData = {
-    transactions: [],
-    setTransactions: (transactions:Transaction[]) => {}
+    transactions: {income:[],outcome:[]},
+    setTransactions: (transactions:Transactions) => {}
 }
 export const BalanceContext = createContext<balanceContextType>(initalData)

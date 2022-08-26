@@ -1,24 +1,37 @@
 
-import React, { useContext } from 'react'
-import AnimatedPage from '../components/AnimatedPage';
+import { motion } from 'framer-motion';
+import React from 'react'
 
 import Balance from '../components/Balance';
-import Form from '../components/Form';
-import TransactionsList from '../components/TransactionsList';
-import { BalanceContext } from '../context/BlanceContext';
+import BalanceChart from '../components/BalanceChart';
+import BalanceDetails from '../components/BalanceDetails';
 interface HomeProps {
   balance: number;
   setBalance: (num:number) => void
 }
 
+
+const animations = {
+  initial:{opacity:0},
+  animate: {opacity:1},
+  exit: {opacity:0}
+}
 const Home:React.FC<HomeProps> = ({balance}) => {
-    const {transactions} = useContext(BalanceContext)
-    const recentTransactions = transactions.filter((item,index)=> index < 5)
     return (
         <>
-                <div className='container'>
+                <motion.div
+                  transition={{
+                    duration:0.4
+                  }}
+                  variants={animations}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className='container'>
                     <Balance balance={balance}/>
-                </div>
+                    <BalanceDetails />
+                    <BalanceChart />
+                </motion.div>
         </>
     )
 }

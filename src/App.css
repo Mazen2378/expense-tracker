@@ -12,24 +12,110 @@ h2 {
 }
 
 body {
-  min-height: 100vh;
-  width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
   color: white;
   background-color: #070707;
   position: relative;
-
+  overflow: hidden;
 }
 
 #root {
   width: 100vw;
   min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .container {
   position: absolute;
-  height: 61.5%;
+  min-height: 61.5%;
+  max-height: 61.5%;
 }
 
+.container .balance {
+  padding: 0 10px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.container .balance-details {
+  padding: 0 20px;
+  display: flex;
+
+}
+
+.container .balance-details div {
+  height: 40px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.container .balance-details .circle {
+  position: relative;
+  height: 40px;
+  width: 40px ;
+  border-radius: 50% ;
+  display: flex;
+  color: #070707;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container .balance-details .circle svg {
+  height: 20px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+
+}
+.container .balance-details .details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  justify-content: space-around;
+}
+.container .balance-details .details p {
+  font-size: 10px;
+  color: gray;
+  font-weight: 500;
+  width: 100%;
+  position: relative;
+  top: 5px;
+}
+
+.container .balance-details .details h3{
+  position: relative;
+  text-align: left;
+  width: 100%;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  bottom: 3px;
+}
+canvas {
+  transition: 1s;
+}
+.container .balance-details .income .circle {
+  background: greenyellow;
+}
+.container .balance-details .outcome .circle {
+  background: rgba(225, 16, 65,1);
+}
+.container .balance p {
+  color: grey;
+  margin-bottom: 10px;
+}
+.container .balance h1 {
+  color: white;
+  margin-left: 10px;
+  font-weight: 700;
+  display: inline-block;
+}
+.container .chart {
+  margin-top: 50px ;
+}
 .panel {
   position: fixed;
   bottom: 0;
@@ -81,14 +167,130 @@ nav .link.active {
   align-items: center;
   position: relative;
   top: -10px;
+  min-width: 45px ;
+  min-height: 45px;
 }
 .link.center .circle {
   background-color: #070707;
-  width: 45px ;
-  height: 45px;
+  min-width: 45px ;
+  min-height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #f4f4f4 ;
   border-radius: 50%;
+  overflow: hidden;
 }
+
+.form {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  padding: 50px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.form form label {
+    font-size: 19px;
+    font-weight: 600;
+}
+.form form input {
+    display: block;
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px gray solid;
+    transition: 1s;
+    margin: 20px;
+}
+
+.form form input:focus {
+    border-bottom: 1px white solid;
+}
+.form form button {
+    outline: none;
+    background: white;
+    color: black;
+    padding:5px;
+    border: 3px black solid;
+    transition:0.5s;
+    font-weight: 500;
+    margin-top: 50px;
+}
+.form form button:hover {
+    background: black;
+    color: white;
+}
+
+.add {
+    height: 100vh;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    position: relative;
+}
+
+
+.calc {
+    background-color: white;
+    border-radius: 30px;
+    height:50%;
+    width:100%;
+    display: grid;
+    color: #070707;
+    padding: 20px;
+}
+
+/* .form button.close { */
+/*   position: relative; */
+/*   top: -40px; */
+/*   margin-bottom: 1%; */
+/*   color: white; */
+/*   font-size: 1rem; */
+/* } */
+/* .form form { */
+/*   background: blue; */
+/*   min-height: 60%; */
+/*   display: flex; */
+/*   flex-direction: column; */
+/*   justify-content: center; */
+/*   align-items: flex-start; */
+/* } */
+/* .form input { */
+/*   width: 70%; */
+/*   transition: 1s; */
+/*   background: none; */
+/*   outline: none; */
+/*   border: none; */
+/*   margin-bottom: 15px; */
+/*   border-bottom: 2px gray solid; */
+/*   margin-left: 15px; */
+/* } */
+/* .form input:focus { */
+/*   border-bottom: 2px white solid; */
+/* } */
+/* .form label { */
+/*   font-size: 18px; */
+/*   margin-bottom: 10px; */
+/* } */
+
+/* .form form button { */
+/*   margin-top: ; */
+/* } */
+
+/* .form { */
+/*   background: orange; */
+/* } */
+/* .form .cal { */
+/*   position:relative; */
+/*   height: 300px; */
+/*   width: 100%; */
+/*   display: flex; */
+/*   justify-content: center; */
+/*   align-items: center; */
+/*   padding: 20px; */
+/*   background-color:green ; */
+/*   left: 0; */
+/* } */
