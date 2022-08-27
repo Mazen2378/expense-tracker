@@ -3,26 +3,26 @@ import { Line } from 'react-chartjs-2';
 import { Chart, ChartData, registerables } from 'chart.js'
 import { BalanceContext } from '../context/BlanceContext';
 import Tooltip from './Tooltip';
-import { getHours} from 'date-fns';
+import { getHours, getDate } from 'date-fns';
 Chart.register(...registerables)
 
-const BalanceChart:React.FC = () => {
-  const newDate = new Date();
-  const currentHour = getHours(newDate)
-    const labels = [String(currentHour - 3), String(currentHour - 2), String(currentHour - 1), String(currentHour), String(currentHour + 1), String(currentHour + 2),String(currentHour + 3)]
-
-    const {transactions} = useContext(BalanceContext)
-
-    const data:ChartData<'line',number[],string> = {
+interface Props {
+  day: string;
+}
+const BalanceChart:React.FC<Props> = ({day}) => {
+    const newDate = new Date();
+    const currentHour = getHours(newDate)
+    const labels = [String(currentHour - 3), String(currentHour - 2), String(currentHour - 1), String(currentHour), String(currentHour + 1), String(currentHour + 2), String(currentHour + 3)]
+    const { transactions } = useContext(BalanceContext)
+    const data: ChartData<'line', number[], string> = {
         labels,
         datasets: [
             {
-
                 borderWidth: 2,
                 label: 'outcome',
                 data: labels.map(label => {
                   let total = 0
-                    transactions.outcome.forEach(transaction => {
+                    transactions.outcome.filter(t => getDate(t.date) === Number(day)).forEach(transaction => {
                       if (String(getHours(transaction.date)) === label) {
                           total += transaction.amount;
                       }
@@ -46,7 +46,7 @@ const BalanceChart:React.FC = () => {
                 label: 'income',
                 data: labels.map(label => {
                     let total = 0
-                    transactions.income.forEach(transaction => {
+                    transactions.income.filter(t => getDate(t.date) === Number(day)).forEach(transaction => {
                         if (String(getHours(transaction.date)) === label) {
                             total += transaction.amount;
                         }
@@ -141,7 +141,6 @@ const BalanceChart:React.FC = () => {
                 <Tooltip data={tooltipData} position={tooltipPos} visibility={tooltipVisible} />
             )}
             </div>
-
         </>
     )
 };

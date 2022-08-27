@@ -10,6 +10,7 @@ import Home from './pages/Home';
 
 import './App.css'
 import Add from './pages/Add';
+import History from './pages/History';
 
 
 const App:React.FC = ({}) => {
@@ -33,7 +34,7 @@ const App:React.FC = ({}) => {
         <AnimatePresence initial={false} exitBeforeEnter >
           <Routes key={location.pathname} location={location}>
             <Route path="/dashboard" element={<Home  balance={balance} setBalance={setBalance}/>}/>
-            <Route path="/history" element={<p>hi</p>}/>
+            <Route path={`/history`} element={<History/>}/>
             <Route path="/add" element={<Add />}/>
 
           </Routes>

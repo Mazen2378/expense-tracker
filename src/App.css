@@ -280,6 +280,7 @@ nav .link.active {
 /*   margin-top: ; */
 /* } */
 
+
 /* .form { */
 /*   background: orange; */
 /* } */
@@ -294,3 +295,31 @@ nav .link.active {
 /*   background-color:green ; */
 /*   left: 0; */
 /* } */
+
+.grid {
+    display: grid;
+    position: relative;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    height:180px;
+    margin: 0 auto;
+}
+.grid div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: 0.5s;
+    height: 36px;
+    width: 36px;
+}
+
+.grid div.active {
+    background-color: black;
+    color: white;
+}
+
+.switcher {
+    /* text-align: center; */
+    display:flex;
+    justify-content: space-between;
+}

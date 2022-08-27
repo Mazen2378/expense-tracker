@@ -1,20 +1,14 @@
-import React, { useContext } from 'react'
-
-import { BalanceContext } from '../context/BlanceContext';
-
-import TransactionsList from '../components/TransactionsList';
-import AnimatedPage from '../components/AnimatedPage';
-
-
+import React from 'react'
+import {useSearchParams} from 'react-router-dom'
+import BalanceChart from '../components/BalanceChart'
+import {getDate} from 'date-fns'
 const History:React.FC = () => {
-    const {transactions} = useContext(BalanceContext)
+    const [params, setParams] = useSearchParams({ d: String(getDate(new Date())) })
     return (
-        <AnimatedPage>
             <div className="container">
-                <h1>All tranactions:</h1>
-                <TransactionsList transactions={transactions} />
+            <BalanceChart day={params.get('d') || '7'} />
+            <h1>{params.get('d')}</h1>
             </div>
-        </AnimatedPage>
     )
 }
 export default History

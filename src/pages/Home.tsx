@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import React from 'react'
 
+import {getDate} from 'date-fns'
 import Balance from '../components/Balance';
 import BalanceChart from '../components/BalanceChart';
 import BalanceDetails from '../components/BalanceDetails';
@@ -30,7 +31,7 @@ const Home:React.FC<HomeProps> = ({balance}) => {
                   className='container'>
                     <Balance balance={balance}/>
                     <BalanceDetails />
-                    <BalanceChart />
+                    <BalanceChart day={String(getDate(new Date()))} />
                 </motion.div>
         </>
     )
