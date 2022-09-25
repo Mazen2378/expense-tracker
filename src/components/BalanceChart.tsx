@@ -122,10 +122,10 @@ const BalanceChart:React.FC<Props> = ({day}) => {
                         }
                     },
                     y: {
-                        min: -5,
+                      min:-1,
                         grid:{
                             display:false,
-                        }
+                        },
                     }
                 },
                 }

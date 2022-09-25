@@ -284,5 +284,10 @@ nav .link.active {
     justify-content: space-between;
     flex-direction: row;
 }
-.income-container p {
+.dash-panel h1 {
+    color: black;
+}
+
+.expense-container p {
+    color: gray;
 }

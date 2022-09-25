@@ -21,7 +21,7 @@ const Tooltip:React.FC<any> = ({data,position,visibility}:{data:any;position:any
                            {data.title}
                        </h5>
                        <ul className="divide-y divide-white">
-                           {data.dataPoints.map((val:any,index:any)=> {
+                           {data.dataPoints.map((val:any,index:number)=> {
                                return (
                                    <>
                                        <li key={index} style={
