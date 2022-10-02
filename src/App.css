@@ -340,7 +340,6 @@ nav .link.active {
     height: 70px;
     width: 70px;
     opacity: 0.9;
-    border-radius: 50%;
     font-size: 20px;
     opacity:.9;
 }
@@ -353,8 +352,8 @@ nav .link.active {
     justify-items: center;
 }
 .numbers .num {
-    height: 70px;
-    width: 70px;
+    /* height: 70px; */
+    /* width: 70px; */
     font-weight: 700;
     font-size: 1.5rem;
 }
@@ -367,24 +366,20 @@ nav .link.active {
     align-items: center;
     justify-items: center;
 }
-/* .opera */
-/* .operators{ */
-/*     background: green; */
-/*     bottom: 300px; */
-/*     width: 100%; */
-/*     height: 50px */
-/* } */
-/* .res { */
-/*     background: black; */
-/*     position: absolute;- */
-/*     bottom: 350px; */
-/*     width: 100%; */
-/* } */
-/* .numbers { */
-/*     width:100%; */
-/*     background: red; */
-/*     display: grid; */
-/*     position: fixed; */
-/*     bottom: 0; */
-/*     height: 300px */
-/* } */
+.main button {
+    transition: 0.74s;
+    height: 100%;
+    width: 100%;
+}
+
+.main button:active {
+    background-color: #121212;
+}
+.paranthesis {
+    width: 100%;
+    height: 100%;
+}
+
+.paranthesis button {
+    height: 50%;
+}
