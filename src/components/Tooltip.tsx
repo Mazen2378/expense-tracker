@@ -17,7 +17,7 @@ const Tooltip:React.FC<any> = ({data,position,visibility}:{data:any;position:any
             >
                {data && (
                    <>
-                       <h5 className="w-full  block text-[10px] uppercase">
+                       <h5 key='hi' className="w-full  block text-[10px] uppercase">
                            {data.title}
                        </h5>
                        <ul className="divide-y divide-white">

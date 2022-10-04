@@ -34,6 +34,19 @@ body {
   max-height: 61.5%;
 }
 
+.form2 {
+    background-color: #070707;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0px 0px 10px 10px rgba(10,10,10);
+    z-index: 5;
+}
+.form2 input {
+    outline: none;
+    background: none;
+}
 .container .balance {
   padding: 0 10px;
   margin-top: 30px;
