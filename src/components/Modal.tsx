@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react'
 import { motion } from 'framer-motion'
 import { BalanceContext } from '../context/BlanceContext';
+import { AddTransaction } from '../../utils/addTransaction';
 
 
 const modalAnimation = {
@@ -46,22 +47,7 @@ const Modal:React.FC<Props> = ({ev}) => {
                 variants={childrenAnimation}
                 onSubmit={(e) => {
                     e.preventDefault()
-                    if (description.trim() === '') return
-                    const date = new Date()
-                    const variant = ev > 0 ? transactions.income : transactions.outcome;
-                    const newTransaction = {
-                        description,
-                        amount: ev,
-                        id: variant.length > 0 ? variant[0].id + 1 : 0,
-                        date,
-                    }
-                    if (ev > 0) {
-                        localStorage.setItem("transactions", JSON.stringify({ outcome: transactions.outcome, income: [newTransaction, ...transactions.income] }))
-                        setTransactions({ outcome: transactions.outcome, income: [newTransaction, ...transactions.income] })
-                    } else {
-                        localStorage.setItem("transactions", JSON.stringify({ income: transactions.income, outcome: [newTransaction, ...transactions.outcome] }))
-                        setTransactions({ income: transactions.income, outcome: [newTransaction, ...transactions.outcome] })
-                    }
+                    AddTransaction(transactions, setTransactions, { description, amount: ev.toString(),category:'shopping'})
                     setDescription('')
                 }}>
                 <input onChange={(e) => { setDescription(e.target.value) }} name="" type="text" value={description} />

@@ -480,6 +480,16 @@ nav .link.active {
 
 .form .amount-container {
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin-bottom: 40px;
+}
+
+select {
+    margin-top: 40px;
+    background-color: black;
+}
+.additional-info {
+    font-size: 12px;
+    color: gray;
+    padding-left: 16px;
 }
