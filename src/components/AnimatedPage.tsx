@@ -6,8 +6,11 @@ const animations = {
     animate: {opacity:1,x:0},
     exit: {opacity:0,x:-100}
 }
+interface Props {
+  children: JSX.Element;
+}
 
-const AnimatedPage = (props:any) => {
+const AnimatedPage:React.FC<Props> = (props) => {
 
     return (
         <>

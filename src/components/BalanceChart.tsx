@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState} from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { Line } from 'react-chartjs-2';
 import { Chart, ChartData, registerables } from 'chart.js'
 import { BalanceContext } from '../context/BlanceContext';
@@ -7,11 +7,11 @@ import { getHours, getDate } from 'date-fns';
 Chart.register(...registerables)
 
 interface Props {
-  day: string;
+    day: string;
 }
-const BalanceChart:React.FC<Props> = ({day}) => {
+const BalanceChart: React.FC<Props> = ({ day }) => {
     const newDate = new Date();
-  const [currentHour, setCurrentHour] = useState(getHours(newDate))
+    const [currentHour, setCurrentHour] = useState(getHours(newDate))
     const labels = [String(currentHour - 3), String(currentHour - 2), String(currentHour - 1), String(currentHour), String(currentHour + 1), String(currentHour + 2), String(currentHour + 3)]
     const { transactions } = useContext(BalanceContext)
     const data: ChartData<'line', number[], string> = {
@@ -21,19 +21,19 @@ const BalanceChart:React.FC<Props> = ({day}) => {
                 borderWidth: 2,
                 label: 'outcome',
                 data: labels.map(label => {
-                  let total = 0
+                    let total = 0
                     transactions.outcome.filter(t => getDate(new Date(t.date)) === Number(day)).forEach(transaction => {
-                      let date = new Date(transaction.date)
-                      if (String(getHours(date)) === label) {
-                          total += transaction.amount;
-                      }
-                  })
+                        let date = new Date(transaction.date)
+                        if (String(getHours(date)) === label) {
+                            total += transaction.amount;
+                        }
+                    })
                     return Math.abs(total)
                 }
                 ),
                 tension: 0.4,
                 borderColor: 'rgba(225, 16, 65,1)',
-                backgroundColor:'rgba(225, 16, 65,1)',
+                backgroundColor: 'rgba(225, 16, 65,1)',
                 pointRadius: 0,
                 pointBorderColor: 'rgba(0,0,0,0)',
                 pointBackgroundColor: 'rgba(225, 16, 65,1)',
@@ -57,7 +57,7 @@ const BalanceChart:React.FC<Props> = ({day}) => {
                 }
                 ),
                 tension: 0.4,
-                pointStyle:'circle',
+                pointStyle: 'circle',
                 borderColor: 'greenyellow',
                 backgroundColor: 'greenyellow',
                 pointRadius: 0,
@@ -76,7 +76,7 @@ const BalanceChart:React.FC<Props> = ({day}) => {
 
     const chartRef = useRef<any>(null);
 
-    const customTooltip = (context:any) => {
+    const customTooltip = (context: any) => {
         if (context.tooltip.opacity == 0) {
             setTooltipVisible(false)
             return
@@ -88,9 +88,9 @@ const BalanceChart:React.FC<Props> = ({day}) => {
             const left = context.tooltip.x
             const top = context.tooltip.y
 
-            if (tooltipPos?.top != top || tooltipPos?.left != left )  {
-               setTooltipPos({top,left})
-               setTooltipData(context.tooltip)
+            if (tooltipPos?.top != top || tooltipPos?.left != left) {
+                setTooltipPos({ top, left })
+                setTooltipData(context.tooltip)
             }
         }
     };
@@ -98,42 +98,42 @@ const BalanceChart:React.FC<Props> = ({day}) => {
         <>
             <div className=" relative chart">
 
-            <Line ref={chartRef}  data={data} options={{
-                interaction: {
-                    mode: 'nearest',
-                    intersect: false,
+                <Line ref={chartRef} data={data} options={{
+                    interaction: {
+                        mode: 'nearest',
+                        intersect: false,
 
-                },
-                plugins: {
-                 legend: {
-                     display: false
-                 },
-                    tooltip: {
-                        enabled: false,
-                        position: 'nearest',
-                        external: customTooltip
-                    }
-                },
-                scales: {
-                    x: {
-                        grid:{
-                            display: false,
-                            color: 'rgba(255,255,255,0.1)',
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false,
+                            position: 'nearest',
+                            external: customTooltip
                         }
                     },
-                    y: {
-                      min:-1,
-                        grid:{
-                            display:false,
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false,
+                                color: 'rgba(255,255,255,0.1)',
+                            }
                         },
-                    }
-                },
+                        y: {
+                            min: -1,
+                            grid: {
+                                display: false,
+                            },
+                        }
+                    },
                 }
 
-            }/>
-            {tooltipPos && (
-                <Tooltip data={tooltipData} position={tooltipPos} visibility={tooltipVisible} />
-            )}
+                } />
+                {tooltipPos && (
+                    <Tooltip data={tooltipData} position={tooltipPos} visibility={tooltipVisible} />
+                )}
                 <div className="btn-container">
                     <button className="mv-btn" onClick={() => {
                         setCurrentHour(currentHour - 1)

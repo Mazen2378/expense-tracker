@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
-import { CgArrowDownO, CgArrowUpO} from 'react-icons/cg';
+import { CgArrowDownO, CgArrowUpO } from 'react-icons/cg';
 import { BalanceContext } from '../context/BlanceContext';
 
 interface BalanceDetailsPropTypes {
 
 }
 
-const BalanceDetails:React.FC<BalanceDetailsPropTypes> = () => {
+const BalanceDetails: React.FC<BalanceDetailsPropTypes> = () => {
 
-    const {transactions} = useContext(BalanceContext)
-  const income = transactions.income.reduce((sum,current)=>{
-    return sum += current.amount
-  },0)
+    const { transactions } = useContext(BalanceContext)
+    const income = transactions.income.reduce((sum, current) => {
+        return sum += current.amount
+    }, 0)
     const outcome = transactions.outcome.reduce((sum, current) => {
         return sum += current.amount
     }, 0)

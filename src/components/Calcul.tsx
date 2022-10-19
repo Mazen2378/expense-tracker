@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import {AnimatePresence} from 'framer-motion'
+import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 
-import Modal from './Modal'
+
 let parStack: string[] = []
 let allowPoint = true;
-
-
 const ops = ['/', '*', '-', '+', '%', '.']
+
 const deleteLast = (str: string): string => {
     return str.slice(0, str.length - 1)
 }
 const checkLastLetterInArr = (str: string, arr: string[]) => {
     return arr.includes(str[str.length - 1])
 }
+
 const Calcul: React.FC = () => {
     const [expression, setExpression] = useState<string>('')
     const [ev, setEv] = useState<number>(0)
@@ -42,24 +41,23 @@ const Calcul: React.FC = () => {
 
     return (
         <>
-            <AnimatePresence>
-                {open && (
-                    <Modal ev={ev} />
-                )}
-            </AnimatePresence>
-            <div className='calc-container'>
+            <motion.div
+                drag='y'
+                dragConstraints={{
+                    top: 0,
+                    bottom: 0
+                }}
+                dragElastic={0.01}
+              className='calc-container'>
                 <div className="res">
                     <p className="expression">
                         {ev}
                     </p>
-                    <p className="ev">
-                        {expression || '0'}
-                    </p>
-
-                </div>
-                <div className='nav'>
-                    <Link to='/dashboard'>home</Link>
-                    <button onClick={() => { setOpen(!open) }}>add</button>
+                    <div className="evd">
+                        <p className="ev">
+                            {expression || '0'}
+                        </p>
+                    </div>
                 </div>
                 <div className="operators">
                     <button className="op" onClick={() => {
@@ -144,7 +142,7 @@ const Calcul: React.FC = () => {
                         }}>=</button>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </>
 
     )

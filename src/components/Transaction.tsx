@@ -5,11 +5,10 @@ import { Transaction } from '../types';
 import { BalanceContext } from '../context/BlanceContext';
 import { MdOutlineLocalCafe, MdOutlineLocalGroceryStore } from 'react-icons/md'
 const TransactionItem: React.FC<{variant:'outcome' | 'income'; t: Transaction }> = ({variant, t }) => {
-    const { transactions, setTransactions } = useContext(BalanceContext)
+    const { deleteTransaction, transactions, setTransactions } = useContext(BalanceContext)
   const handleClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
       e.preventDefault()
-      let newItem = transactions[variant].filter(transaction => transaction.id !== t.id)
-    setTransactions({...transactions, [variant]:newItem})
+    deleteTransaction(t,variant)
   }
     return (
         <div className="expense-container">

@@ -1,60 +1,64 @@
-import React, {useState, useContext} from 'react'
-import { motion } from 'framer-motion'
-import { BalanceContext } from '../context/BlanceContext';
-import { AddTransaction } from '../../utils/addTransaction';
+import { motion, Variant, Variants } from 'framer-motion';
+import React from 'react';
+import Calcul from './Calcul'
 
-
-const modalAnimation = {
+const overlayAnimations = {
     initial: {
-        width: 0,
- height: 0,
-    },
-    animate: {
-      width: '300px', height: '200px',
         transition: {
-            duration: .8,
-            when: 'beforeChildren',
-            staggerChildren: 0.3
-        }
+            duration: .1
+        }, opacity: 0
     },
+    animate: { opacity: .7 },
     exit: {
-      width: 0, height: 0,
         transition: {
-            duration: .8,
-            when: 'afterChildren',
-        }
+            duration: .2,
+        },
+        opacity: 0
     }
 }
-const childrenAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 }
+const animationVariants:Variants = {
+  
+  hidden: {y:700},
+  visible: {y:0}
 }
 interface Props {
-  ev: number;
+    ev: number;
+    setOpen: (b: boolean) => void
 }
-const Modal:React.FC<Props> = ({ev}) => {
-    const [description, setDescription] = useState<string>('')
-    const { transactions, setTransactions } = useContext(BalanceContext)
+const Modal: React.FC<Props> = ({setOpen }) => {
     return (
-        <motion.div
-            variants={modalAnimation}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="form2">
-            <motion.form
-                variants={childrenAnimation}
-                onSubmit={(e) => {
-                    e.preventDefault()
-                    AddTransaction(transactions, setTransactions, { description, amount: ev.toString(),category:'shopping'})
-                    setDescription('')
-                }}>
-                <input onChange={(e) => { setDescription(e.target.value) }} name="" type="text" value={description} />
-                <button type="submit">submit</button>
-            </motion.form>
-        </motion.div>
-  )
+        <>
+            <motion.div
+                variants={animationVariants}
+              initial='hidden' animate='visible' exit='hidden'
+              drag='y'
+              transition={{
+                type: 'spring',
+                damping:15 
+              }}
+              dragConstraints={{
+               top: 0,
+                bottom: 0
+              }}
+              dragElastic={0.8}
+                onDragEnd={(event, info) => {
+                    if (info.offset.y > 200) {
+                        setOpen(false)
+                    }
+                }}
+                className='calc-modal'>
+                <div className="drag-area">
+
+                </div>
+              <Calcul />
+            </motion.div>
+            <motion.div
+                variants={overlayAnimations}
+                initial="initial" animate="animate" exit="exit"
+                className="overlay" onClick={() => { setOpen(false) }}>
+            </motion.div>
+        </>
+    )
 }
 
 export default Modal
