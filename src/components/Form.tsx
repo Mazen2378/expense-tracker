@@ -23,10 +23,13 @@ const Form:React.FC = () => {
         date,
         }
         if (Number(input.amount) > 0) {
-            setTransactions({ outcome: transactions.outcome, income: [newTransaction, ...transactions.income] })
+            localStorage.setItem("transactions", JSON.stringify({ outcome: transactions.outcome, income: [newTransaction, ...transactions.income] }))
+          setTransactions({ outcome: transactions.outcome, income: [newTransaction, ...transactions.income] })
         } else {
+            localStorage.setItem("transactions", JSON.stringify({ income: transactions.income, outcome: [newTransaction, ...transactions.outcome] }))
             setTransactions({ income: transactions.income, outcome: [newTransaction, ...transactions.outcome] })
         }
+        
         setInput({ description: '', amount: '' })
     }
 

@@ -115,20 +115,33 @@ canvas {
 }
 .container .chart {
   margin-top: 50px ;
+  postition: relative;
 }
 .panel {
   position: fixed;
   bottom: 0;
   min-height: 38.5%;
+  max-height: 38.5%;
   background-color: #f4f4f4;
   width: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 10px;
   color: #070707;
+  overflow: hidden;
 }
 
 
+.chart .btn-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    color: grey;
+    justify-content: space-between;
+    align-items: space-around;
+}
 nav {
   position: inherit;
   bottom: 0;
@@ -222,7 +235,6 @@ nav .link.active {
     background: black;
     color: white;
 }
-
 .add {
     height: 100vh;
     min-height: 800px;
@@ -231,8 +243,6 @@ nav .link.active {
     justify-content:space-between;
     position: relative;
 }
-
-
 .calc {
     background-color: white;
     border-radius: 30px;
@@ -242,66 +252,13 @@ nav .link.active {
     color: #070707;
     padding: 20px;
 }
-
-/* .form button.close { */
-/*   position: relative; */
-/*   top: -40px; */
-/*   margin-bottom: 1%; */
-/*   color: white; */
-/*   font-size: 1rem; */
-/* } */
-/* .form form { */
-/*   background: blue; */
-/*   min-height: 60%; */
-/*   display: flex; */
-/*   flex-direction: column; */
-/*   justify-content: center; */
-/*   align-items: flex-start; */
-/* } */
-/* .form input { */
-/*   width: 70%; */
-/*   transition: 1s; */
-/*   background: none; */
-/*   outline: none; */
-/*   border: none; */
-/*   margin-bottom: 15px; */
-/*   border-bottom: 2px gray solid; */
-/*   margin-left: 15px; */
-/* } */
-/* .form input:focus { */
-/*   border-bottom: 2px white solid; */
-/* } */
-/* .form label { */
-/*   font-size: 18px; */
-/*   margin-bottom: 10px; */
-/* } */
-
-/* .form form button { */
-/*   margin-top: ; */
-/* } */
-
-
-/* .form { */
-/*   background: orange; */
-/* } */
-/* .form .cal { */
-/*   position:relative; */
-/*   height: 300px; */
-/*   width: 100%; */
-/*   display: flex; */
-/*   justify-content: center; */
-/*   align-items: center; */
-/*   padding: 20px; */
-/*   background-color:green ; */
-/*   left: 0; */
-/* } */
-
 .grid {
     display: grid;
     position: relative;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     height:180px;
     margin: 0 auto;
+    transition: 1s;
 }
 .grid div {
     display: flex;
@@ -312,14 +269,20 @@ nav .link.active {
     height: 36px;
     width: 36px;
 }
-
 .grid div.active {
     background-color: black;
     color: white;
 }
-
 .switcher {
     /* text-align: center; */
     display:flex;
     justify-content: space-between;
+}
+
+.expense-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.income-container p {
 }

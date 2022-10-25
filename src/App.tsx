@@ -13,10 +13,12 @@ import Add from './pages/Add';
 import History from './pages/History';
 
 
+
 const App:React.FC = ({}) => {
   const [balance, setBalance] = useState(0);
     const [add, setAdd] = useState(false);
-  const [transactions, setTransactions] = useState<Transactions>(placeholderTransactions);
+    const trans = localStorage.getItem("transactions");
+    const [transactions, setTransactions] = useState<Transactions>(trans ? JSON.parse(trans) : placeholderTransactions);
   useEffect(() => {
     let amount = 0;
     transactions.income.forEach(transaction => amount += transaction.amount)
