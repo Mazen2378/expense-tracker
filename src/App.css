@@ -288,6 +288,13 @@ nav .link.active {
     color: black;
 }
 
-.expense-container p {
-    color: gray;
+.expense-container .description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.description .negative{
+    color: rgba(225, 16, 65,1);
+    font-weight: 500;
 }
