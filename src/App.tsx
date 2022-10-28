@@ -39,7 +39,7 @@ const App:React.FC = ({}) => {
             <Route path="/dashboard" element={<Home  balance={balance} setBalance={setBalance}/>}/>
             <Route path={`/history`} element={<History/>}/>
             <Route path="/add" element={<Add />}/>
-            <Route path="/clac" element={<Calcul />} />
+            <Route path="/calc" element={<Calcul />} />
           </Routes>
         </AnimatePresence>
        <AnimatePresence initial={false} exitBeforeEnter>
