@@ -43,7 +43,7 @@ const App:React.FC = ({}) => {
           </Routes>
         </AnimatePresence>
        <AnimatePresence initial={false} exitBeforeEnter>
-         {location.pathname === '/add' ? '' : <Panel key={String(location.pathname === '/add')} add={add} setAdd={setAdd} /> }
+         {location.pathname === '/add' || location.pathname === '/calc' ? '' : <Panel key={String(location.pathname === '/add')} add={add} setAdd={setAdd} /> }
 
                   </AnimatePresence>
       </BalanceContext.Provider>
