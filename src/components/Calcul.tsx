@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { BalanceContext } from '../context/BlanceContext';
-import {AnimatePresence, motion} from 'framer-motion'
+import {AnimatePresence} from 'framer-motion'
+
+import Modal from './Modal'
 let parStack: string[] = []
 let allowPoint = true;
+
 
 const ops = ['/', '*', '-', '+', '%', '.']
 const deleteLast = (str: string): string => {
@@ -12,30 +14,7 @@ const deleteLast = (str: string): string => {
 const checkLastLetterInArr = (str: string, arr: string[]) => {
     return arr.includes(str[str.length - 1])
 }
-const animations = {
-    initial: { width: 0, height:0 ,
-    },
-    animate: { width: '300px', height: '200px',
-        transition: {
-          duration: .4,
-            when: 'beforeChildren',
-            staggerChildren: 0.3
-        }
-    },
-    exit: { width: 0, height: 0,
-        transition: {
-            duration: .4,
-            when: 'afterChildren',
-        }
-    }
-}
-const animations2 = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 }
-}
 const Calcul: React.FC = () => {
-    const { transactions, setTransactions } = useContext(BalanceContext)
     const [expression, setExpression] = useState<string>('')
     const [ev, setEv] = useState<number>(0)
     const [lastNum, setLastNum] = useState<string>('')
@@ -59,7 +38,6 @@ const Calcul: React.FC = () => {
     }
 
     const [open, setOpen] = useState<boolean>()
-    const [description, setDescription] = useState<string>('')
 
 
     return (
@@ -69,39 +47,7 @@ const Calcul: React.FC = () => {
             <button onClick={() => { setOpen(!open) }}>add</button>
             <AnimatePresence>
             {open && (
-            <motion.div 
-                    variants={animations}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    className="form2">
-                <motion.form
-                            variants={animations2}
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    if (description.trim() === '') return
-                    const date = new Date()
-                    const variant = ev > 0 ? transactions.income : transactions.outcome;
-                    const newTransaction = {
-                        description,
-                        amount: ev,
-                        id: variant.length > 0 ? variant[0].id + 1 : 0,
-                        date,
-                    }
-                    if (ev > 0) {
-                        localStorage.setItem("transactions", JSON.stringify({ outcome: transactions.outcome, income: [newTransaction, ...transactions.income] }))
-                        setTransactions({ outcome: transactions.outcome, income: [newTransaction, ...transactions.income] })
-                    } else {
-                        localStorage.setItem("transactions", JSON.stringify({ income: transactions.income, outcome: [newTransaction, ...transactions.outcome] }))
-                        setTransactions({ income: transactions.income, outcome: [newTransaction, ...transactions.outcome] })
-                    }
-                    setOpen(false)
-                  setDescription('')
-                }}>
-                    <input onChange={(e) => { setDescription(e.target.value) }} name="" type="text" value={description} />
-                    <button type="submit">submit</button>
-                </motion.form>
-            </motion.div>
+              <Modal ev={ev} />
                 )}</AnimatePresence>
             <div className='calc-container'>
                 <div className="res">

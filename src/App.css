@@ -35,13 +35,16 @@ body {
 }
 
 .form2 {
-    background-color: #070707;
+    background-color: white;
     position: absolute;
-    left: 50%;
     top: 50%;
+    left: calc(50%);
+    color: black;
     transform: translate(-50%,-50%);
     box-shadow: 0px 0px 10px 10px rgba(10,10,10);
     z-index: 5;
+    height: 200px;
+    width: 300px
 }
 .form2 input {
     outline: none;
@@ -296,7 +299,39 @@ nav .link.active {
 .expense-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: row;
+}
+
+.expense-container button {
+    background-color: black;
+    height: 40px;
+    color: white;
+    width: 40px;
+    border-radius: 50%;
+    opacity: .6;
+}
+.e-date {
+    color: grey;
+    font-size: 14px;
+}
+
+.expense-container .details  {
+    display:flex;
+    width: 100px;
+    flex-direction: column;
+}
+.dash-panel h2 {
+    margin-bottom: 20px;
+}
+.details .descriptions {
+    font-size: 18px;
+    font-weight: 500;
+}
+.details .method  {
+    font-weight: 400;
+    color: grey;
+    font-size: 12px;
 }
 .dash-panel h1 {
     color: black;
@@ -310,6 +345,9 @@ nav .link.active {
 }
 .description .negative{
     color: rgba(225, 16, 65,1);
+    font-weight: 500;
+}
+.description .positive{
     font-weight: 500;
 }
 

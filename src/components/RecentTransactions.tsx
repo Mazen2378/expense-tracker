@@ -11,9 +11,9 @@ const RecentTransactions:React.FC = (e,) => {
   return (
     <>
           <div className='dash-panel'>
-            <h1>
+            <h2>
               Last Transactions
-            </h1>
+            </h2>
               {/* <h1>income</h1>
               {transactions.income.map((t,index) => {
                   return (
@@ -27,26 +27,30 @@ const RecentTransactions:React.FC = (e,) => {
                     </div>
                   )
               })} */}
-              {transactions.income.map((t,index) => {
+              {transactions.income.slice(0,2).map((t,index) => {
                 const date = new Date(t.date)
                   return (
                       <div className="expense-container" key={index}>
                         <button onClick={()=> {
                               const newIncome = transactions.income.filter((trans)=>trans.id !== t.id )
                           setTransactions({...transactions,income:newIncome})
-
                         }}>x</button>
-                          <p>
-                              {t.description}
-                          </p>
+                          <div className="details">
+                              <p className='descriptions'>
+                                  {t.description}
+                              </p>
+                              <p className='method'>
+                                 {'cash'}
+                              </p>
+                          </div>
                           <div className="description">
-                              <p className='negative'>
+                              <p className='positive'>
                                   {
                                    t.amount % 1 === 0 ? `${t.amount}.00`: t.amount
                                   }
                               </p>
-                              <p>
-                                  {format(date, "yyy.mm.dd | hh:mm aaaaa.'m'")}
+                              <p className="e-date">
+                                  {format(date, "yyy.M.dd | hh:mm aaaaa.'m'")}
                                   {/* {`${getDate(new Date(date))}.${getMonth(date)}.${getYear(date)} | ${getHours(date)}:${getMinutes(date)} ${get(date)}`} */}
                               </p>
                           </div>
