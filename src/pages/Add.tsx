@@ -24,8 +24,6 @@ const Add:React.FC<AddPropTypes> = () => {
                 animate="animate"
           >
             <Form />
-            <div className="calc">
-            </div>
           </motion.div>
         </>
     )

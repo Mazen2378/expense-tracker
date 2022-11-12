@@ -42,13 +42,11 @@ const Calcul: React.FC = () => {
 
     return (
         <>
-            <Link to='/dashboard'>home</Link>
-            <br />
-            <button onClick={() => { setOpen(!open) }}>add</button>
             <AnimatePresence>
-            {open && (
-              <Modal ev={ev} />
-                )}</AnimatePresence>
+                {open && (
+                    <Modal ev={ev} />
+                )}
+            </AnimatePresence>
             <div className='calc-container'>
                 <div className="res">
                     <p className="expression">
@@ -58,6 +56,10 @@ const Calcul: React.FC = () => {
                         {expression || '0'}
                     </p>
 
+                </div>
+                <div className='nav'>
+                    <Link to='/dashboard'>home</Link>
+                    <button onClick={() => { setOpen(!open) }}>add</button>
                 </div>
                 <div className="operators">
                     <button className="op" onClick={() => {
@@ -82,7 +84,6 @@ const Calcul: React.FC = () => {
                     }}>/</button>
                 </div>
                 <div className="main">
-
                     <div className="numbers">
                         {
                             [7, 8, 9, 4, 5, 6, 1, 2, 3, 'special', 0, "."].map((num, index) => {

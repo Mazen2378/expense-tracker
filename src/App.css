@@ -240,17 +240,17 @@ nav .link.active {
 }
 .form form button {
     outline: none;
-    background: white;
-    color: black;
+    background: black;
+    color: white;
     padding:5px;
-    border: 3px black solid;
+    border: 3px white solid;
     transition:0.5s;
     font-weight: 500;
     margin-top: 50px;
 }
 .form form button:hover {
-    background: black;
-    color: white;
+    background: white;
+    color: black;
 }
 .add {
     height: 100vh;
@@ -304,12 +304,45 @@ nav .link.active {
 }
 
 .expense-container button {
-    background-color: black;
+    background-color: rgba(225, 16, 65,.6);
     height: 40px;
-    color: white;
+    font-weight: 700;
     width: 40px;
     border-radius: 50%;
-    opacity: .6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+.dots {
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+    height: 40px;
+    position: relative;
+}
+.options {
+    position: absolute;
+    left: -100px;
+    background: white;
+    z-index: 7;
+    top: -30px;
+    height: 50px;
+    width:100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.option .icon {
+    font-size:18px;
+    padding-top: 2px;
+    margin-right: 15px;
+}
+.option {
+    display: flex;
+}
+.dots .dot {
+    height: 5px;
 }
 .e-date {
     color: grey;
@@ -333,10 +366,15 @@ nav .link.active {
     color: grey;
     font-size: 12px;
 }
-.dash-panel h1 {
-    color: black;
-}
 
+.dash-panel .transactions {
+    position: relative;
+    height: 150px;
+    overflow: scroll;
+}
+.dash-panel {
+    margin-bottom: 20px;
+}
 .expense-container .description {
     display: flex;
     flex-direction: column;
@@ -357,6 +395,11 @@ nav .link.active {
     bottom: 40px;
     padding: 0;
     height: 550px
+}
+.nav {
+    display: flex;
+    width: 100%;
+    gap: 20px;
 }
 
 .res {
@@ -433,4 +476,10 @@ nav .link.active {
 
 .paranthesis button {
     height: 50%;
+}
+
+.form .amount-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
