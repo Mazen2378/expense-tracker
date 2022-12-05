@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, {useEffect , useContext, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { BalanceContext } from '../context/BlanceContext';
 import { IoCalculator } from 'react-icons/io5'
@@ -10,6 +10,16 @@ const Form: React.FC = () => {
     const { addTransaction } = useContext(BalanceContext)
     const [input, setInput] = useState({ description: '', amount: '', category: 'cafe' });
     const [open, setOpen] = useState<boolean>(false)
+    const setAmount = (amount: number | 'error' ) => {
+        setInput({ ...input, amount: amount.toString() })
+    }
+    useEffect(() => {
+      localStorage.setItem('expression', '')
+
+      return () => {
+        localStorage.removeItem('expression')
+      }
+    }, [])
     const handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement> = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
     }
@@ -30,7 +40,9 @@ const Form: React.FC = () => {
                         <input autoComplete="off" onChange={handleChange} type="text" name="description" value={input.description} />
                         <label htmlFor="amount">amount</label>
                         <div className="amount-container">
-                            <input autoComplete="off" onChange={handleChange} type="number" name="amount" value={input.amount} />
+                            <input onClick={(e)=>{
+                              e.preventDefault();
+                            }} autoComplete="off" onChange={handleChange} type="number" name="amount" value={input.amount} />
                             {/* <Link className='icon' to='/calc'><IoCalculator /></Link> */}
                             <button type='button' className='icon' onClick={() => { setOpen(!open) }}><IoCalculator /></button>
                         </div>
@@ -47,7 +59,7 @@ const Form: React.FC = () => {
             </motion.div>
             <AnimatePresence>
                 {open && (
-                    <Modal setOpen={setOpen} ev={7} />
+                    <Modal setAmount={setAmount} setOpen={setOpen} ev={7} />
                 )}
             </AnimatePresence>
         </>

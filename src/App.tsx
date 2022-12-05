@@ -1,17 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { Route, Routes, useLocation } from 'react-router';
 
-import { placeholderTransactions, Transactions } from './types';
-import { BalanceContext,BalanceProvider } from './context/BlanceContext';
+import { BalanceContext } from './context/BlanceContext';
 
 import Panel from './components/SideBar';
 import Home from './pages/Home';
 
-import './App.css'
+import './App.css';
 import Add from './pages/Add';
 import History from './pages/History';
-import Calcul from './components/Calcul';
 
 
 
@@ -29,15 +27,11 @@ const App: React.FC = ({}) => {
     const location = useLocation()
     return (
         <>
-                <div className='bg-white'>
-
-                </div>
                 <AnimatePresence initial={false} exitBeforeEnter >
                     <Routes key={location.pathname} location={location}>
                         <Route path="/dashboard" element={<Home balance={balance} setBalance={setBalance} />} />
                         <Route path={`/history`} element={<History />} />
                         <Route path="/add" element={<Add />} />
-                        <Route path="/calc" element={<Calcul />} />
                     </Routes>
                 </AnimatePresence>
                 <AnimatePresence initial={false} exitBeforeEnter>

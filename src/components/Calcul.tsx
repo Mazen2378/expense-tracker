@@ -13,11 +13,12 @@ const checkLastLetterInArr = (str: string, arr: string[]) => {
     return arr.includes(str[str.length - 1])
 }
 
-const Calcul: React.FC = () => {
-    const [expression, setExpression] = useState<string>('')
+const Calcul: React.FC<{setAmount: (b:any) => void}> = ({setAmount}) => {
+    const [expression, setExpression] = useState<string>(localStorage.getItem('expression') || '')
     const [ev, setEv] = useState<number>(0)
     const [lastNum, setLastNum] = useState<string>('')
     useEffect(() => {
+      localStorage.setItem('expression',expression)
         try {
             let res = eval(expression)
             setEv(res)
@@ -36,7 +37,6 @@ const Calcul: React.FC = () => {
         setExpression(expression + val)
     }
 
-    const [open, setOpen] = useState<boolean>()
 
 
     return (
@@ -139,6 +139,8 @@ const Calcul: React.FC = () => {
                         }}>+</button>
                         <button style={{ color: 'orange' }} className='op' onClick={() => {
                             setExpression(eval(expression))
+
+                          setAmount(ev)
                         }}>=</button>
                     </div>
                 </div>

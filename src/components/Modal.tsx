@@ -1,6 +1,7 @@
-import { motion, Variant, Variants } from 'framer-motion';
-import React from 'react';
+import { AnimatePresence, motion, Variant, Variants } from 'framer-motion';
+import React, {useState} from 'react';
 import Calcul from './Calcul'
+import { IoMdMore } from 'react-icons/io'
 
 const overlayAnimations = {
     initial: {
@@ -17,15 +18,20 @@ const overlayAnimations = {
     }
 }
 const animationVariants:Variants = {
-  
   hidden: {y:700},
   visible: {y:0}
 }
+const optionsVariants = {
+        hidden: { width: 0,height: 0 },
+        visible: { height: 150,width: 200 }
+}
 interface Props {
     ev: number;
-    setOpen: (b: boolean) => void
+    setOpen: (b: boolean) => void;
+    setAmount: (t: any) => void
 }
-const Modal: React.FC<Props> = ({setOpen }) => {
+const Modal: React.FC<Props> = ({setOpen,setAmount }) => {
+  const [openOptions, setOpenOptions] = useState<boolean>(false)
     return (
         <>
             <motion.div
@@ -47,10 +53,26 @@ const Modal: React.FC<Props> = ({setOpen }) => {
                     }
                 }}
                 className='calc-modal'>
-                <div className="drag-area">
+                <div className="drag-area"></div>
+                <div onClick={()=>{setOpenOptions(true)}} className="dots">
+                  <IoMdMore />
 
                 </div>
-              <Calcul />
+                <AnimatePresence>
+              {openOptions && (
+                <>
+                        <motion.div
+                            className="overlay options" onClick={() => { setOpenOptions(false) }}>
+                        </motion.div>
+                     <motion.div
+                            variants={optionsVariants}
+                            initial='hidden' animate='visible' exit='hidden'
+                       transition={{duration: .3}}
+                       className="options-modal"></motion.div>
+                </>
+              )}
+                </AnimatePresence>
+              <Calcul setAmount={setAmount}/>
             </motion.div>
             <motion.div
                 variants={overlayAnimations}
